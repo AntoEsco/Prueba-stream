@@ -1,0 +1,21 @@
+name: Prueba Transmisión Telegram
+
+on:
+  workflow_dispatch: # Esto activa el botón manual para iniciar cuando quieras
+
+jobs:
+  transmitir:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Descargar el código
+        uses: actions/checkout@v3
+
+      - name: Instalar FFmpeg
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg
+
+      - name: Ejecutar programa
+        env:
+          TELEGRAM_KEY: ${{ secrets.TELEGRAM_KEY }}
+        run: python main.py
