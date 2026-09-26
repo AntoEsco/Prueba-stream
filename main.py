@@ -1,8 +1,8 @@
 import os
 import subprocess
 
-# Usaremos una señal de prueba pública (.m3u8 directo)
-URL_TEST = "https://m3u8-proxy.freecodecamp.rocks/hls/live.m3u8"
+# Enlace de prueba directo y superestable (Señal HLS pública)
+URL_TEST = "https://demo.unified-streaming.com/k8s/features/stable/hls/tears-of-steel/tears-of-steel.ism/.m3u8"
 
 # Recuperamos la clave secreta guardada en GitHub
 stream_key = os.environ.get("TELEGRAM_KEY")
@@ -10,7 +10,6 @@ rtmp_destino = f"rtmps://dc.rtmp.telegram.org:443/s/{stream_key}"
 
 print("Iniciando la retransmisión de prueba a Telegram...")
 
-# Comando FFmpeg para reenviar la señal
 cmd = [
     'ffmpeg',
     '-re',
@@ -21,5 +20,4 @@ cmd = [
     rtmp_destino
 ]
 
-# Ejecuta la retransmisión
 subprocess.run(cmd)
